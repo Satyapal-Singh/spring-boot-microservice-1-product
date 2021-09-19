@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/product")
@@ -16,9 +17,9 @@ public class ProductController
     private IProductService productService;
 
     @PostMapping
-    public ResponseEntity<?> saveProduct(@RequestBody Product product)
+    public ResponseEntity<?> saveProduct(@RequestBody List<Product> products)
     {
-        return new ResponseEntity<>(productService.saveProduct(product), HttpStatus.CREATED);
+        return new ResponseEntity<>(productService.saveProduct(products), HttpStatus.CREATED);
     }
 
     @Transactional
@@ -33,5 +34,23 @@ public class ProductController
     public ResponseEntity<?> getAllProducts()
     {
         return ResponseEntity.ok(productService.findAllProducts());
+    }
+
+    @GetMapping("{productId}")
+    public ResponseEntity<?> getProductById(@PathVariable Long productId)
+    {
+        return ResponseEntity.ok(productService.showProductById(productId));
+    }
+
+    @GetMapping("getByName/{productName}")
+    public ResponseEntity<?> getProductById(@PathVariable String productName)
+    {
+        return ResponseEntity.ok(productService.showProductByName(productName));
+    }
+
+    @GetMapping("getByPrice/{productPrice}")
+    public ResponseEntity<?> getProductByPrice(@PathVariable Double productPrice)
+    {
+        return ResponseEntity.ok(productService.getProductByPrice(productPrice));
     }
 }
