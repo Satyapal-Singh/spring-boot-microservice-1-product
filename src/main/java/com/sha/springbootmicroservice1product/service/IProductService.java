@@ -13,4 +13,5 @@ public interface IProductService
     public Optional<Product> showProductById(Long productId);
     public List<Product> showProductByName(String productName);
     public List<Product> getProductByPrice(Double productPrice);
+    public void deleteAllProducts();
 }

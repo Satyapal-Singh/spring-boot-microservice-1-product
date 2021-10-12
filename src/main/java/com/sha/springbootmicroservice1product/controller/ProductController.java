@@ -53,4 +53,12 @@ public class ProductController
     {
         return ResponseEntity.ok(productService.getProductByPrice(productPrice));
     }
+
+    @Transactional
+    @DeleteMapping
+    public ResponseEntity<?> deleteAllProducts()
+    {
+        productService.deleteAllProducts();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

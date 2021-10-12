@@ -71,4 +71,9 @@ public class ProductService implements IProductService {
         return productRepository.findAll(prodEx);
 
     }
+    @Override
+    public void deleteAllProducts()
+    {
+        productRepository.deleteAll();
+    }
 }
