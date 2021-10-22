@@ -18,6 +18,15 @@ public class Product {
 
     @Column(name="price", nullable=false)
     private Double price;
+	
+	@Column(name="brand", length=100, nullable=true)
+	private String brand;
+	
+	@Column(name="discount", nullable=true)
+	private Double discount;
+	
+	@Column(name="category", length=100, nullable=true)
+	private String category;
 
     @Column(name="create_time",nullable=false)
     private LocalDateTime createTime;
